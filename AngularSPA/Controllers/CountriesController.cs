@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using AngularSPA.Entities;
+using AngularSPA.Modules;
 using AngularSPA.Services;
 
 namespace AngularSPA.Controllers
@@ -21,9 +22,11 @@ namespace AngularSPA.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Country> GetAll()
+        public ApiResponse<IList<Country>> GetAll()
         {
-            return _countryService.GetAll();
+            var result = _countryService.GetAll();
+            return new ApiResponse<IList<Country>>(result);
+
         }
 
         [HttpGet]
